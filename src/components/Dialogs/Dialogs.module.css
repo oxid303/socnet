@@ -1,0 +1,6 @@
+.content {
+  background-color: rgb(222, 241, 253);
+  display: grid;
+
+  grid-template-columns: 3fr 5fr;
+}

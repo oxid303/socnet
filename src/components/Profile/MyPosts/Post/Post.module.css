@@ -1,0 +1,10 @@
+.item {
+  color: rgb(7, 45, 80);
+}
+
+.item img {
+  margin: 5px;
+  max-height: 60px;
+  max-width: 60px;
+  border-radius: 30px;
+}
