@@ -1,9 +1,7 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import state from './components/Redux/state';
-import { rerender } from './rerender'
+import rerender from './rerender';
 
 rerender(state);
 

@@ -8,7 +8,9 @@ const MyPosts = (props) => {
 
   let addPostArea = React.createRef();
   let addPost = () => {
-    props.state.addPost(addPostArea.current.value);
+    let text = addPostArea.current.value;
+    props.funcs.addPost(text);
+    addPostArea.current.value = '';
   };
 
   return (

@@ -1,12 +1,11 @@
-import {rerender} from '../../rerender'
+import rerender from '../../rerender'
 
 let state = {
   profile: {
     posts: [
       { id: 1, message: 'Hi :)', likesCount: 15 },
       { id: 2, message: 'How are you?', likesCount: 23 }
-    ],
-    addPost: addPost
+    ]
   },
   dialogs: {
     users: [
@@ -26,7 +25,15 @@ let state = {
   }
 };
 
+export let funcs = {
+  profile: {
+    addPost: addPost
+  }
+};
+
 function addPost(message) {
+  if (message === '') return;
+
   let newPost = {
     id: state.profile.posts.length + 1,
     message: message,
