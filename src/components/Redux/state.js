@@ -1,11 +1,19 @@
-import rerender from '../../rerender'
+let rerender;
+
+let subscribe = (observer) => {
+  rerender = observer;
+};
 
 let state = {
+  subscribe: subscribe,
   profile: {
     posts: [
       { id: 1, message: 'Hi :)', likesCount: 15 },
       { id: 2, message: 'How are you?', likesCount: 23 }
-    ]
+    ],
+    addPost: addPost,
+    typing: typing,
+    textArea: ''
   },
   dialogs: {
     users: [
@@ -25,22 +33,22 @@ let state = {
   }
 };
 
-export let funcs = {
-  profile: {
-    addPost: addPost
-  }
-};
-
-function addPost(message) {
-  if (message === '') return;
+function addPost() {
+  if (state.profile.textArea === '') return;
 
   let newPost = {
     id: state.profile.posts.length + 1,
-    message: message,
+    message: state.profile.textArea,
     likesCount: 0
   };
   state.profile.posts.push(newPost);
-  rerender(state);
+  state.profile.textArea = '';
+  rerender();
+};
+
+function typing(message) {
+  state.profile.textArea = message;
+  rerender();
 };
 
 export default state;
