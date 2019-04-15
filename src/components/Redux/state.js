@@ -1,19 +1,32 @@
-let rerender;
-
-let subscribe = (observer) => {
-  rerender = observer;
-};
+let rerender = () => {};
 
 let state = {
-  subscribe: subscribe,
+  subscribe(observer) {rerender = observer},
+
   profile: {
     posts: [
       { id: 1, message: 'Hi :)', likesCount: 15 },
       { id: 2, message: 'How are you?', likesCount: 23 }
     ],
-    addPost: addPost,
-    typing: typing,
-    textArea: ''
+    textArea: '',
+
+    typing(message) {
+      this.textArea = message;
+      rerender();
+    },
+
+    addPost() {
+      if (this.textArea === '') return;
+    
+      let newPost = {
+        id: this.posts.length + 1,
+        message: this.textArea,
+        likesCount: 0
+      };
+      this.posts.push(newPost);
+      this.textArea = '';
+      rerender();
+    }
   },
   dialogs: {
     users: [
@@ -31,24 +44,6 @@ let state = {
       { id: 5, message: 'Everything ok :)' }
     ]
   }
-};
-
-function addPost() {
-  if (state.profile.textArea === '') return;
-
-  let newPost = {
-    id: state.profile.posts.length + 1,
-    message: state.profile.textArea,
-    likesCount: 0
-  };
-  state.profile.posts.push(newPost);
-  state.profile.textArea = '';
-  rerender();
-};
-
-function typing(message) {
-  state.profile.textArea = message;
-  rerender();
 };
 
 export default state;
