@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog.js';
-import { addMessageCreator, typeMessageCreator } from '../Redux/state';
+import { addMessageCreator, typeMessageCreator } from '../Redux/dialogsReducer';
 
 const Dialogs = (props) => {
 
