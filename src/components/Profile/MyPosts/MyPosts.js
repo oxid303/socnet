@@ -9,11 +9,11 @@ const MyPosts = (props) => {
   let addPostArea = React.createRef();
 
   let typing = () => {
-    props.state.typing(addPostArea.current.value);
+    props.dispatch({type: 'typing', message: addPostArea.current.value});
   };
 
   let addPost = () => {
-    props.state.addPost();
+    props.dispatch({type: 'add-post'});
   };
 
   return (
