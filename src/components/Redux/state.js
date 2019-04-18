@@ -19,7 +19,7 @@ let store = {
   dispatch(action) {
     if (action.type === typePost) {
       this._state.profile.postTextArea = action.message;
-      this._rerender(this);
+      this._rerender(this._state);
     };
 
     if (action.type === addPost) {
@@ -32,12 +32,12 @@ let store = {
       };
       this._state.profile.posts.push(newPost);
       this._state.profile.postTextArea = '';
-      this._rerender(this);
+      this._rerender(this._state);
     };
 
     if (action.type === typeMessage) {
       this._state.dialogs.messageTextArea = action.message;
-      this._rerender(this);
+      this._rerender(this._state);
     };
 
     if (action.type === addMessage) {
@@ -49,7 +49,7 @@ let store = {
       }
       this._state.dialogs.messages.push(newMessage);
       this._state.dialogs.messageTextArea = '';
-      this._rerender(this);
+      this._rerender(this._state);
     };
   },
 
