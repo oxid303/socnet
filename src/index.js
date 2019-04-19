@@ -5,7 +5,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 // BrowserRouter, Router, Route, Link, NavLink
 import { BrowserRouter } from 'react-router-dom';
-import store from './components/Redux/state';
+import store from './components/Redux/store';
 
 export let rerender = (state) => {
   ReactDOM.render(
