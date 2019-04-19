@@ -12,7 +12,7 @@ const dialogsReducer = (state, action) => {
       break;
 
     case addMessage:
-      if (state.messageTextArea === '') return;
+      if (state.messageTextArea === '') break;
 
       let newMessage = {
         id: state.messages.length + 1,

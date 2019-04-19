@@ -12,7 +12,7 @@ const profileReducer = (state, action) => {
       break;
 
     case addPost:
-      if (state.postTextArea === '') return;
+      if (state.postTextArea === '') break;
 
       let newPost = {
         id: state.posts.length + 1,
