@@ -2,8 +2,8 @@ import profileReducer from './profileReducer';
 import dialogsReducer from './dialogsReducer';
 
 let store = {
-  _rerender() { },
-  subscribe(observer) { this._rerender = observer },
+  _callSubscriber() { },
+  subscribe(observer) { this._callSubscriber = observer },
 
   getState() {
     return this._state;
@@ -13,7 +13,7 @@ let store = {
 
     this._state.profile = profileReducer(this._state.profile, action);
     this._state.dialogs = dialogsReducer(this._state.dialogs, action);
-    this._rerender(this._state);
+    this._callSubscriber(this._state);
   },
 
   _state: {
