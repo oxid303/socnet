@@ -5,7 +5,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 // BrowserRouter, Router, Route, Link, NavLink
 import { BrowserRouter } from 'react-router-dom';
-import store from './components/Redux/store';
+import store from './components/Redux/redux-store';
 
 export let rerender = (state) => {
   ReactDOM.render(
@@ -16,7 +16,9 @@ export let rerender = (state) => {
 
 rerender(store.getState());
 
-store.subscribe(rerender);
+store.subscribe(() => {
+  rerender(store.getState());
+});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

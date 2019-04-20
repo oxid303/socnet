@@ -4,7 +4,9 @@ const addPost = 'add-post';
 export const typePostCreator = (message) => ({ type: typePost, message: message });
 export const addPostCreator = () => ({ type: addPost });
 
-const profileReducer = (state, action) => {
+let initialState = {posts: [], postTextArea: ''};
+
+const profileReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case typePost:

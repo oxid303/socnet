@@ -4,7 +4,9 @@ const addMessage = 'add-message';
 export const typeMessageCreator = (message) => ({ type: typeMessage, message: message });
 export const addMessageCreator = () => ({ type: addMessage });
 
-const dialogsReducer = (state, action) => {
+let initialState = {users: [], messages: [], messageTextArea: ''};
+
+const dialogsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case typeMessage:
