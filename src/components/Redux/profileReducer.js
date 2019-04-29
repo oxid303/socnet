@@ -1,10 +1,13 @@
-const typePost = 'type-post';
-const addPost = 'add-post';
+const typePost = 'TYPE-POST';
+const addPost = 'ADD-POST';
 
 export const typePostCreator = (message) => ({ type: typePost, message: message });
 export const addPostCreator = () => ({ type: addPost });
 
-let initialState = {posts: [], postTextArea: ''};
+let initialState = {
+  posts: [],
+  postTextArea: '',
+};
 
 const profileReducer = (state = initialState, action) => {
 

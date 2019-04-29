@@ -11,9 +11,9 @@ let store = {
 
   dispatch(action) {
 
-    this._state.profile = profileReducer(this._state.profile, action);
-    this._state.dialogs = dialogsReducer(this._state.dialogs, action);
-    this._callSubscriber(this._state);
+    profileReducer(this._state.profile, action);
+    dialogsReducer(this._state.dialogs, action);
+    this._callSubscriber();
   },
 
   _state: {

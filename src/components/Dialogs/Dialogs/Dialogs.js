@@ -1,20 +1,19 @@
 import React from 'react';
 import s from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog.js';
-import { addMessageCreator, typeMessageCreator } from '../Redux/dialogsReducer';
 
 const Dialogs = (props) => {
 
-  let dialogs = props.state.users.map(item => <Dialog name={item.name} id={item.id} />);
-  let messages = props.state.messages.map(item => <div className={s.message}>{item.message}</div>);
+  let dialogs = props.users.map(item => <Dialog key={item.id} name={item.name} id={item.id} />);
+  let messages = props.messages.map(item => <div key={item.id} className={s.message}>{item.message}</div>);
 
-  let typeMessage = (e) => {
-    let text = e.target.value;
-    props.dispatch(typeMessageCreator(text));
+  let typeMessage = (textArea) => {
+    let text = textArea.target.value;
+    props.typeMessage(text);
   };
 
   let addMessage = () => {
-    props.dispatch(addMessageCreator());
+    props.addMessage();
   };
 
   return (
@@ -27,8 +26,7 @@ const Dialogs = (props) => {
           {messages}
         </div>
         <div>
-          <textarea
-            value={props.state.messageTextArea} onChange={typeMessage}></textarea>
+          <textarea value={props.messageTextArea} onChange={typeMessage}></textarea>
           <br />
           <button onClick={addMessage}>Send message</button>
         </div>
