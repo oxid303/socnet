@@ -13,26 +13,28 @@ const profileReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case typePost:
-      state.postTextArea = action.message;
-      break;
+      return {
+        ...state,
+        postTextArea: action.message
+      };
 
     case addPost:
-      if (state.postTextArea === '') break;
+      if (state.postTextArea === '') return state;
 
       let newPost = {
         id: state.posts.length + 1,
         message: state.postTextArea,
         likesCount: 0
       };
-      state.posts.push(newPost);
-      state.postTextArea = '';
-      break;
+      return {
+        ...state,
+        posts: [...state.posts, newPost],
+        postTextArea: ''
+      };
 
     default:
-      break;
+      return state;
   };
-
-  return state;
 };
 
 export default profileReducer;

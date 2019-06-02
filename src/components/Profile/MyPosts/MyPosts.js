@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './MyPosts.module.css';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Post from './Post/Post.js';
 
 const MyPosts = (props) => {
@@ -18,7 +19,8 @@ const MyPosts = (props) => {
   };
 
   return (
-    <div>
+    <div className={s.content}>
+      <ProfileInfo />
       <div>
         <textarea ref={addPostArea} value={props.postTextArea} onChange={typePost} />
         <br />

@@ -14,25 +14,27 @@ const dialogsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case typeMessage:
-      state.messageTextArea = action.message;
-      break;
+      return {
+        ...state,
+        messageTextArea: action.message
+      };
 
     case addMessage:
-      if (state.messageTextArea === '') break;
+      if (state.messageTextArea === '') return state;
 
       let newMessage = {
         id: state.messages.length + 1,
         message: state.messageTextArea
       }
-      state.messages.push(newMessage);
-      state.messageTextArea = '';
-      break;
+      return {
+        ...state,
+        messages: [...state.messages, newMessage],
+        messageTextArea: ''
+      };
 
     default:
-      break;
+      return state;
   };
-
-  return state;
 };
 
 export default dialogsReducer;

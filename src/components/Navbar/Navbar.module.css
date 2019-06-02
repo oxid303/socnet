@@ -1,14 +1,25 @@
-.nav {
+.nav{
   grid-area: n;
   background-color: rgb(222, 241, 253);
-  padding: 10px 0 0 20px;
+  padding: 10px 0;
 }
-
-.item a {
+.item{
+  margin: auto;
+  height: 27px;
+  line-height: 25px;
+  width: 90%;
+}
+.item:hover{
+  background-color: rgb(195, 224, 241);
+}
+.item a{
   color: rgb(0, 128, 255);
   text-decoration: none;
 }
-
-.item a.active {
+.item a.active{
   color: rgb(255, 0, 212);
+}
+.link{
+  padding-left: 20px;
+  height: 100%;
 }

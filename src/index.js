@@ -3,22 +3,17 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import store from './Redux/redux-store';
 // BrowserRouter, Router, Route, Link, NavLink
 import { BrowserRouter } from 'react-router-dom';
-import store from './components/Redux/redux-store';
+import { Provider } from 'react-redux';
 
-export let rerender = (store) => {
-  ReactDOM.render(
-    <BrowserRouter>
-      <App store={store} />
-    </BrowserRouter>, document.getElementById('root'));
-};
-
-rerender(store);
-
-store.subscribe(() => {
-  rerender(store);
-});
+ReactDOM.render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
