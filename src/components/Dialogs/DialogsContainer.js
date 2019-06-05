@@ -1,5 +1,5 @@
 import Dialogs from './Dialogs/Dialogs';
-import { addMessageCreator, typeMessageCreator } from '../../Redux/dialogsReducer';
+import { addMessageCreator, typingMessageCreator } from '../../Redux/dialogsReducer';
 import {connect} from 'react-redux';
 
 let mapStateToProps = (state) => {
@@ -12,8 +12,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    typeMessage: (text) => {
-      dispatch(typeMessageCreator(text));
+    typingMessage: (text) => {
+      dispatch(typingMessageCreator(text));
     },
     addMessage: () => {
       dispatch(addMessageCreator());

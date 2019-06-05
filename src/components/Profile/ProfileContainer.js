@@ -1,5 +1,5 @@
-import MyPosts from './MyPosts/MyPosts.js';
-import { typePostCreator, addPostCreator } from '../../Redux/profileReducer';
+import MyPosts from './MyPosts/MyPosts';
+import { typingPostCreator, addPostCreator } from '../../Redux/profileReducer';
 import {connect} from 'react-redux';
 
 let mapStateToProps = (state) => {
@@ -11,8 +11,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    typePost: (text) => {
-      dispatch(typePostCreator(text));
+    typingPost: (text) => {
+      dispatch(typingPostCreator(text));
     },
     addPost: () => {
       dispatch(addPostCreator());

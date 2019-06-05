@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import Post from './Post/Post.js';
+import Post from './Post/Post';
 
 const MyPosts = (props) => {
 
@@ -10,8 +10,8 @@ const MyPosts = (props) => {
 
   let addPostArea = React.createRef();
 
-  let typePost = () => {
-    props.typePost(addPostArea.current.value);
+  let typingPost = () => {
+    props.typingPost(addPostArea.current.value);
   };
 
   let addPost = () => {
@@ -22,7 +22,7 @@ const MyPosts = (props) => {
     <div className={s.content}>
       <ProfileInfo />
       <div>
-        <textarea ref={addPostArea} value={props.postTextArea} onChange={typePost} />
+        <textarea ref={addPostArea} value={props.postTextArea} onChange={typingPost} />
         <br />
         <button onClick={addPost}>Add post</button>
       </div>

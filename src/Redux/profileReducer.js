@@ -1,8 +1,8 @@
-const typePost = 'TYPE-POST';
-const addPost = 'ADD-POST';
+const TYPING_POST = 'PROFILE-TYPING-POST';
+const ADD_POST = 'PROFILE-ADD-POST';
 
-export const typePostCreator = (message) => ({ type: typePost, message: message });
-export const addPostCreator = () => ({ type: addPost });
+export const typingPostCreator = (message) => ({ type: TYPING_POST, message: message });
+export const addPostCreator = () => ({ type: ADD_POST });
 
 let initialState = {
   posts: [],
@@ -12,13 +12,13 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case typePost:
+    case TYPING_POST:
       return {
         ...state,
         postTextArea: action.message
       };
 
-    case addPost:
+    case ADD_POST:
       if (state.postTextArea === '') return state;
 
       let newPost = {
