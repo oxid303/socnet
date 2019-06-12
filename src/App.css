@@ -13,6 +13,6 @@
 
 .app-wrapper-content {
   grid-area: c;
-  background-color: rgb(255, 216, 216);
+  /* background-color: rgb(255, 216, 216); */
   min-height: 300px;
 }

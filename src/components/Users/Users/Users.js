@@ -1,44 +1,44 @@
 import React from 'react';
 import s from './Users.module.css';
-import * as axios from 'axios';
 import defaultUserPhoto from '../../../assets/images/default_user.png';
 
 let Users = (props) => {
 
-  if (props.users.length === 0) {
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
-    axios.get("https://social-network.samuraijs.com/api/1.0/users").then(responce => {
-      let usersArr = responce.data.items;
-
-      // usersArr.forEach(i => {
-      //   if (i.photos.small === null) i.photos.small = defaultUserPhoto;
-      // })
-
-      props.setUsers(usersArr);
-    });
+  let pages = [];
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i);
   }
 
-  let users = props.users.map(u =>
-    <div key={u.id}>
-      <span>
-        <div className={s.avatar}>
-          <img src={u.photos.small != null ? u.photos.small : defaultUserPhoto} alt="no available" />
-        </div>
-        <div>
-          {<button onClick={() => u.followed ? props.unfollow(u.id) : props.follow(u.id)}>
-            {u.followed ? 'Unsubscribe' : 'Subscribe'}
-          </button>}
-        </div>
-      </span>
-      <span>
-        <div>{u.name}</div>
-        <div>{u.status}</div>
-      </span>
-    </div>
-  )
   return (
     <div className={s.content}>
-      {users}
+      {pages.map(p => (
+        <span key={p}>
+          <button
+            onClick={() => props.onPageChanged(p)}
+            className={props.currentPage === p ? s.selectedPage : undefined}>{p}</button>
+        </span>
+      ))
+      }
+      {props.users.map(u =>
+        <div key={u.id}>
+          <span>
+            <div className={s.avatar}>
+              <img src={u.photos.small != null ? u.photos.small : defaultUserPhoto} alt="no available" />
+            </div>
+            <div>
+              <button onClick={() => props.followed(u.id)}>
+                {u.followed ? 'Unsubscribe' : 'Subscribe'}
+              </button>
+            </div>
+          </span>
+          <span>
+            <div>{u.name}</div>
+            <div>{u.status}</div>
+          </span>
+        </div>
+      )}
     </div>
   )
 }
