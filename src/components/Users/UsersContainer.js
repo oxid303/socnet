@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Users from './Users/Users';
 import Preloader from '../common/Preloader/Preloader';
 
-class UsersAPIContainer extends React.Component {
+class UsersContainer extends React.Component {
 
   axiosGet(currentPage) {
     this.props.toggleIsFetching(true);
@@ -57,26 +57,9 @@ let mapStateToProps = (state) => {
   }
 }
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    followed: (id) => {
-      dispatch(ActionCreators.followedAC(id));
-    },
-    setUsers: (users) => {
-      dispatch(ActionCreators.setUsersAC(users));
-    },
-    setTotalUsersCount: (totalUsersCount) => {
-      dispatch(ActionCreators.setTotalUsersCountAC(totalUsersCount));
-    },
-    setCurrentPage: (pageNumber) => {
-      dispatch(ActionCreators.setCurrentPageAC(pageNumber));
-    },
-    toggleIsFetching: (isFetching) => {
-      dispatch(ActionCreators.toggleIsFetchingAC(isFetching))
-    }
-  }
+let dispatch = {};
+for (const key in ActionCreators) {
+  dispatch[key] = ActionCreators[key];
 }
 
-let UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer);
-
-export default UsersContainer;
+export default connect(mapStateToProps, dispatch)(UsersContainer);

@@ -4,11 +4,11 @@ const SET_TOTAL_USERS_COUNT = 'USERS-SET-TOTAL-USERS-COUNT';
 const SET_CURRENT_PAGE = 'USERS-SET-CURRENT-PAGE';
 const TOGGLE_IS_FETCHING = 'USERS-TOGGLE-IS-FETCHING';
 
-export let followedAC = (id) => ({ type: FOLLOWED, id: id });
-export let setUsersAC = (users) => ({ type: SET_USERS, users: users });
-export let setTotalUsersCountAC = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount: totalUsersCount });
-export let setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
-export let toggleIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
+export let followed = (id) => ({ type: FOLLOWED, id: id });
+export let setUsers = (users) => ({ type: SET_USERS, users: users });
+export let setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount: totalUsersCount });
+export let setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
+export let toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
 let initialState = {
   users: [],
