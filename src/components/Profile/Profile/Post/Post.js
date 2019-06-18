@@ -5,7 +5,7 @@ import defaultUserPhoto from '../../../../assets/images/default_user.png';
 const Post = (props) => {
   return (
     <div className={s.item}>
-      <img src={defaultUserPhoto} alt="no available"/>
+      <img src={props.userPhoto || defaultUserPhoto} alt="no available"/>
       {props.message}
       <div>
         <span>Likes: {props.likesCount}</span>

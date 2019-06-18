@@ -1,0 +1,34 @@
+.header{
+  grid-area: h;
+  background-color: #36a2eb;
+}
+
+.logoBlock{
+  float: left;
+  width: 165px;
+  height: 100%;
+  transition: 0.07s;
+}
+.logoBlock:hover{
+  background-color: #6abaf0;
+}
+.header img{
+  max-height: 40px;
+  margin: 5px 0 0 60px;
+}
+
+.loginBlock{
+  padding: 13px 0 0 0;
+  float: right;
+  text-align: center;
+  text-decoration: none;
+  height: 37px;
+  color: #fff;
+  transition: 0.07s;
+}
+.loginBlock:hover{
+  background-color: #6abaf0;
+}
+.loginUserName{
+  padding: 0 40px;
+}

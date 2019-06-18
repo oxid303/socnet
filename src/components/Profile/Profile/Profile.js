@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './MyPosts.module.css';
+import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Post from './Post/Post';
 
@@ -20,7 +20,7 @@ const MyPosts = (props) => {
 
   return (
     <div className={s.content}>
-      <ProfileInfo />
+      <ProfileInfo userInfo={props.userInfo} />
       <div>
         <textarea ref={addPostArea} value={props.postTextArea} onChange={typingPost} />
         <br />
