@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Users.module.css';
 import defaultUserPhoto from '../../assets/images/default_user.png';
 import { NavLink } from 'react-router-dom';
-import * as axios from 'axios';
+import { followUser, unfollowUser } from '../../api/api';
 
 let Users = (props) => {
 
@@ -33,28 +33,16 @@ let Users = (props) => {
             <div>
               <button onClick={u.followed ?
                 () => {
-                  axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                    withCredentials: true,
-                    headers: {
-                      "API-KEY": "11413268-0a83-4855-8886-a27de6220b24"
-                    }
-                  })
-                    .then(responce => {
-                      console.log(responce);
-                      if (responce.data.resultCode === 0) props.unfollow(u.id);
-                    }).catch(error => console.log(error))
+                  unfollowUser(u.id)
+                    .then(resultCode => {
+                      if (resultCode === 0) props.unfollow(u.id)
+                    })
                 } :
                 () => {
-                  axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                    withCredentials: true,
-                    headers: {
-                      "API-KEY": "11413268-0a83-4855-8886-a27de6220b24"
-                    }
-                  })
-                    .then(responce => {
-                      console.log(responce);
-                      if (responce.data.resultCode === 0) props.follow(u.id);
-                    }).catch(error => console.log(error))
+                  followUser(u.id)
+                    .then(resultCode => {
+                      if (resultCode === 0) props.follow(u.id)
+                    })
                 }}>
                 {u.followed ? 'Unsubscribe' : 'Subscribe'}
               </button>

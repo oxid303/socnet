@@ -1,6 +1,6 @@
 import React from 'react';
 import Profile from './Profile';
-import * as axios from 'axios';
+import { getUserData } from '../../api/api';
 import * as ActionCreators from '../../Redux/profileReducer';
 import { connect } from 'react-redux';
 import Preloader from '../common/Preloader/Preloader';
@@ -11,15 +11,12 @@ class ProfileContainer extends React.Component {
   axiosGet() {
     this.props.toggleIsFetching(true);
     let id = this.props.match.params.userId || this.props.authId;
-    if (id === null) {
-      this.props.toggleIsFetching(false);
-      return;
-    }
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`).then(responce => {
-      this.props.setUserInfo(responce.data);
-      this.props.toggleIsFetching(false);
-    }).catch(() => {
-      this.props.setUserInfo({fullName: 'No such user or directory'});
+    // if (id === null) {
+    //   this.props.toggleIsFetching(false);
+    //   return;
+    // }
+    getUserData(id).then(data => {
+      this.props.setUserInfo(data);
       this.props.toggleIsFetching(false);
     })
   }
