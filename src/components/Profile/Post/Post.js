@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Post.module.css';
-import defaultUserPhoto from '../../../../assets/images/default_user.png';
+import defaultUserPhoto from '../../../assets/images/default_user.png';
 
 const Post = (props) => {
   return (

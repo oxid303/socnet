@@ -1,5 +1,5 @@
 import React from 'react';
-import Profile from './Profile/Profile';
+import Profile from './Profile';
 import * as axios from 'axios';
 import * as ActionCreators from '../../Redux/profileReducer';
 import { connect } from 'react-redux';

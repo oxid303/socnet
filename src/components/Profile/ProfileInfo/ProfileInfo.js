@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
-import widePicture from '../../../../assets/images/wide_pic.jpg';
+import widePicture from '../../../assets/images/wide_pic.jpg';
 
 const ProfileInfo = (props) => {
   return (

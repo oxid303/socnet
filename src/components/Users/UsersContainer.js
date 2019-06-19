@@ -2,14 +2,16 @@ import React from 'react';
 import * as ActionCreators from '../../Redux/usersReducer';
 import * as axios from 'axios';
 import { connect } from 'react-redux';
-import Users from './Users/Users';
+import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 
 class UsersContainer extends React.Component {
 
   axiosGet(currentPage) {
     this.props.toggleIsFetching(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`).then(responce => {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`, {
+      withCredentials: true
+    }).then(responce => {
       let items = responce.data.items || [];
       this.props.setUsers(items);
       this.props.setTotalUsersCount(responce.data.totalCount);
@@ -38,7 +40,8 @@ class UsersContainer extends React.Component {
             totalUsersCount={this.props.totalUsersCount}
             currentPage={this.props.currentPage}
 
-            followed={this.props.followed}
+            follow={this.props.follow}
+            unfollow={this.props.unfollow}
             onPageChanged={this.onPageChanged}
           />
         }

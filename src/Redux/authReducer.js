@@ -4,7 +4,6 @@ export let setAuthUserData = (id, email, login) => ({ type: SET_AUTH_USER_DATA, 
 
 let initialState = {
   isAuth: false,
-  isFetching: false,
   id: null,
   email: null,
   login: null

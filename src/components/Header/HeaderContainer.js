@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header/Header';
+import Header from './Header';
 import { connect } from 'react-redux';
 import * as ActionCreators from '../../Redux/authReducer';
 import * as axios from 'axios';
