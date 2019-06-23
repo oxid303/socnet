@@ -1,6 +1,17 @@
+import { APIauthMe } from '../api/api';
+
 const SET_AUTH_USER_DATA = 'AUTH-SET-AUTH-USER-DATA';
 
-export let setAuthUserData = (id, email, login) => ({ type: SET_AUTH_USER_DATA, userData: {id, email, login} });
+export const setAuthUserData = (id, email, login) => ({ type: SET_AUTH_USER_DATA, userData: {id, email, login} });
+
+export const authMe = () => {
+  return (dispatch) => {
+    APIauthMe().then(data => {
+      let {id, email, login} = data.data;
+      if (data.resultCode === 0) dispatch(setAuthUserData(id, email, login));
+    })
+  }
+}
 
 let initialState = {
   isAuth: false,

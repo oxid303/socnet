@@ -1,3 +1,5 @@
+import { APIauthMe, APIgetUserData } from '../api/api';
+
 const TYPING_POST = 'PROFILE-TYPING-POST';
 const ADD_POST = 'PROFILE-ADD-POST';
 const SET_USER_INFO = 'PROFILE-SET-USER-INFO';
@@ -7,6 +9,20 @@ export const typingPost = (message) => ({ type: TYPING_POST, message });
 export const addPost = () => ({ type: ADD_POST });
 export const setUserInfo = (userInfo) => ({ type: SET_USER_INFO, userInfo });
 export const toggleIsFetching = (isFetching) => ({ type: IS_FETCHING, isFetching });
+
+export const viewUser = (id) => {
+  return (dispatch) => {
+    APIgetUserData(id).then(data => {
+      dispatch(setUserInfo(data));
+      dispatch(toggleIsFetching(false));
+    })
+  }
+}
+export const authMeAndViewUser = () => {
+  return (dispatch) => {
+    APIauthMe().then(data => dispatch(viewUser(data.data.id)));
+  }
+}
 
 let initialState = {
   posts: [],

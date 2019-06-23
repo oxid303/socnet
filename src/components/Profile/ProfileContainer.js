@@ -1,6 +1,5 @@
 import React from 'react';
 import Profile from './Profile';
-import { getUserData } from '../../api/api';
 import * as ActionCreators from '../../Redux/profileReducer';
 import { connect } from 'react-redux';
 import Preloader from '../common/Preloader/Preloader';
@@ -8,21 +7,13 @@ import { withRouter } from 'react-router-dom';
 
 class ProfileContainer extends React.Component {
 
-  axiosGet() {
-    this.props.toggleIsFetching(true);
-    let id = this.props.match.params.userId || this.props.authId;
-    // if (id === null) {
-    //   this.props.toggleIsFetching(false);
-    //   return;
-    // }
-    getUserData(id).then(data => {
-      this.props.setUserInfo(data);
-      this.props.toggleIsFetching(false);
-    })
-  }
-
   componentDidMount() {
-    this.axiosGet();
+    this.props.toggleIsFetching(true);
+
+    if (this.props.match.params.userId) this.props.viewUser(this.props.match.params.userId)
+    else
+      if (this.props.isAuth) this.props.viewUser(this.props.authId)
+      else this.props.authMeAndViewUser();
   }
 
   render() {
@@ -40,10 +31,9 @@ let mapStateToProps = (state) => {
     postTextArea: state.profile.postTextArea,
     userInfo: state.profile.userInfo,
     isFetching: state.profile.isFetching,
+    isAuth: state.auth.isAuth,
     authId: state.auth.id
   }
 }
 
-let ProfileRouterContainer = withRouter(ProfileContainer);
-
-export default connect(mapStateToProps, ActionCreators)(ProfileRouterContainer);
+export default connect(mapStateToProps, ActionCreators)(withRouter(ProfileContainer));

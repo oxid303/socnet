@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Users.module.css';
 import defaultUserPhoto from '../../assets/images/default_user.png';
 import { NavLink } from 'react-router-dom';
-import { followUser, unfollowUser } from '../../api/api';
 
 let Users = (props) => {
 
@@ -31,23 +30,9 @@ let Users = (props) => {
               </NavLink>
             </div>
             <div>
-              <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={u.followed ?
-                () => {
-                  props.toggleFollowingInProgress(u.id, true);
-                  unfollowUser(u.id)
-                    .then(resultCode => {
-                      if (resultCode === 0) props.unfollow(u.id);
-                      props.toggleFollowingInProgress(u.id, false);
-                    })
-                } :
-                () => {
-                  props.toggleFollowingInProgress(u.id, true);
-                  followUser(u.id)
-                    .then(resultCode => {
-                      if (resultCode === 0) props.follow(u.id);
-                      props.toggleFollowingInProgress(u.id, false);
-                    })
-                }}>
+              <button
+                disabled={props.followingInProgress.some(id => id === u.id)}
+                onClick={u.followed ? () => props.unfollowUser(u.id) : () => props.followUser(u.id)}>
                 {u.followed ? 'Unsubscribe' : 'Subscribe'}
               </button>
             </div>

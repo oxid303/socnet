@@ -30,28 +30,28 @@ const defaultUserData = {
   userId: null
 }
 
-export const getUsersPage = (currentPage = 1, pageSize = 10) => {
+export const APIgetUsersPage = (currentPage = 1, pageSize = 10) => {
   return instance.get(`/users?page=${currentPage}&count=${pageSize}`)
     .then(responce => responce.data)
 }
 
-export const authMe = () => {
+export const APIauthMe = () => {
   return instance.get('/auth/me')
     .then(responce => responce.data)
 }
 
-export const getUserData = (id) => {
+export const APIgetUserData = (id) => {
   return instance.get(`/profile/${id}`)
     .then(responce => responce.data)
     .catch(() => defaultUserData)
 }
 
-export const followUser = (id) => {
+export const APIfollowUser = (id) => {
   return instance.post(`/follow/${id}`)
     .then(responce => responce.data.resultCode)
 }
 
-export const unfollowUser = (id) => {
+export const APIunfollowUser = (id) => {
   return instance.delete(`/follow/${id}`)
     .then(responce => responce.data.resultCode)
 }
