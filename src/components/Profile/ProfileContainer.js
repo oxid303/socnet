@@ -3,20 +3,17 @@ import Profile from './Profile';
 import * as ActionCreators from '../../Redux/profileReducer';
 import { connect } from 'react-redux';
 import Preloader from '../common/Preloader/Preloader';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 class ProfileContainer extends React.Component {
 
   componentDidMount() {
-    this.props.toggleIsFetching(true);
-
-    if (this.props.match.params.userId) this.props.viewUser(this.props.match.params.userId)
-    else
-      if (this.props.isAuth) this.props.viewUser(this.props.authId)
-      else this.props.authMeAndViewUser();
+    const id = this.props.match.params.userId || this.props.authId;
+    if (id) this.props.viewUser(id);
   }
 
   render() {
+    if (!this.props.isAuth) return <Redirect to="/login" />
     return (
       <>
         {this.props.isFetching ? <Preloader /> : <Profile {...this.props} />}
@@ -31,8 +28,8 @@ let mapStateToProps = (state) => {
     postTextArea: state.profile.postTextArea,
     userInfo: state.profile.userInfo,
     isFetching: state.profile.isFetching,
-    isAuth: state.auth.isAuth,
-    authId: state.auth.id
+    authId: state.auth.id,
+    isAuth: state.auth.isAuth
   }
 }
 

@@ -1,4 +1,4 @@
-import { APIauthMe, APIgetUserData } from '../api/api';
+import { APIgetUserData } from '../api/api';
 
 const TYPING_POST = 'PROFILE-TYPING-POST';
 const ADD_POST = 'PROFILE-ADD-POST';
@@ -12,15 +12,11 @@ export const toggleIsFetching = (isFetching) => ({ type: IS_FETCHING, isFetching
 
 export const viewUser = (id) => {
   return (dispatch) => {
+    dispatch(toggleIsFetching(true));
     APIgetUserData(id).then(data => {
       dispatch(setUserInfo(data));
       dispatch(toggleIsFetching(false));
     })
-  }
-}
-export const authMeAndViewUser = () => {
-  return (dispatch) => {
-    APIauthMe().then(data => dispatch(viewUser(data.data.id)));
   }
 }
 
