@@ -3,7 +3,8 @@ import Profile from './Profile';
 import * as ActionCreators from '../../Redux/profileReducer';
 import { connect } from 'react-redux';
 import Preloader from '../common/Preloader/Preloader';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 class ProfileContainer extends React.Component {
 
@@ -13,7 +14,6 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
-    if (!this.props.isAuth) return <Redirect to="/login" />
     return (
       <>
         {this.props.isFetching ? <Preloader /> : <Profile {...this.props} />}
@@ -28,9 +28,10 @@ let mapStateToProps = (state) => {
     postTextArea: state.profile.postTextArea,
     userInfo: state.profile.userInfo,
     isFetching: state.profile.isFetching,
-    authId: state.auth.id,
-    isAuth: state.auth.isAuth
+    authId: state.auth.id
   }
 }
 
-export default connect(mapStateToProps, ActionCreators)(withRouter(ProfileContainer));
+let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+
+export default connect(mapStateToProps, ActionCreators)(withRouter(AuthRedirectComponent));
