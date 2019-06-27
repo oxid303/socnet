@@ -1,6 +1,7 @@
 import React from 'react';
 import Profile from './Profile';
 import * as ActionCreators from '../../Redux/profileReducer';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import Preloader from '../common/Preloader/Preloader';
 import { withRouter } from 'react-router-dom';
@@ -32,6 +33,8 @@ let mapStateToProps = (state) => {
   }
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
-
-export default connect(mapStateToProps, ActionCreators)(withRouter(AuthRedirectComponent));
+export default compose(
+  connect(mapStateToProps, ActionCreators),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer);
