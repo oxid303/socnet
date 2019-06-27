@@ -1,6 +1,22 @@
-.image {
-  max-width: 100%;
+.container{
+  display: grid;
+  grid-template-areas:
+  "a n"
+  "a s";
+  grid-template-rows: 30px 180px;
+  grid-template-columns: 200px 595px;
+  grid-gap: 10px;
+}
+.avatar img{
+  grid-area: a;
+  max-width: 200px;
+  max-height: 200px;
 }
 .fullName{
+  grid-area: n;
   font-size: 25px;
+  font-weight: bold;
+}
+.status{
+  grid-area: s;
 }

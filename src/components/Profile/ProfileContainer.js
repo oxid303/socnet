@@ -5,13 +5,13 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import Preloader from '../common/Preloader/Preloader';
 import { withRouter } from 'react-router-dom';
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 class ProfileContainer extends React.Component {
 
   componentDidMount() {
-    const id = this.props.match.params.userId || this.props.authId;
-    if (id) this.props.viewUser(id);
+    const id = this.props.match.params.userId || this.props.authId || 2;
+    this.props.getStatus(id);
+    this.props.getUser(id);
   }
 
   render() {
@@ -29,12 +29,13 @@ let mapStateToProps = (state) => {
     postTextArea: state.profile.postTextArea,
     userInfo: state.profile.userInfo,
     isFetching: state.profile.isFetching,
+    status: state.profile.status,
+    setStatus: state.profile.setStatus,
     authId: state.auth.id
   }
 }
 
 export default compose(
   connect(mapStateToProps, ActionCreators),
-  withRouter,
-  withAuthRedirect
+  withRouter
 )(ProfileContainer);

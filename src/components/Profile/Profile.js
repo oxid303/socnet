@@ -19,8 +19,12 @@ const MyPosts = (props) => {
   };
 
   return (
-    <div className={s.content}>
-      <ProfileInfo userInfo={props.userInfo} />
+    <div className={s.container}>
+      <ProfileInfo
+        userInfo={props.userInfo}
+        status={props.status}
+        typingStatus={props.typingStatus}
+        setStatus={props.setStatus} />
       <div>
         <textarea ref={addPostArea} value={props.postTextArea} onChange={typingPost} />
         <br />
@@ -28,7 +32,6 @@ const MyPosts = (props) => {
       </div>
 
       <div className={s.posts}>
-        <br />
         {posts}
       </div>
     </div>

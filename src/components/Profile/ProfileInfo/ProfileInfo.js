@@ -1,15 +1,19 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
-import widePicture from '../../../assets/images/wide_pic.jpg';
+import ProfileStatus from './ProfileStatus';
+import defaultUserPhoto from '../../../assets/images/default_user.png';
 
 const ProfileInfo = (props) => {
   return (
-    <div>
-      <div>
-        <img className={s.image} src={widePicture} alt="no available" />
+    <div className={s.container}>
+      <div className={s.avatar}>
+        <img src={props.userInfo.photos.large || defaultUserPhoto} alt="Profile" />
       </div>
       <div className={s.fullName}>
-        {props.userInfo ? props.userInfo.fullName : 'Not Autorized'}
+        {props.userInfo.fullName}
+      </div>
+      <div className={s.status}>
+        <ProfileStatus status={props.status} typingStatus={props.typingStatus} setStatus={props.setStatus} />
       </div>
     </div>
   )
