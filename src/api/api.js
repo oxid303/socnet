@@ -31,6 +31,8 @@ export const APIunfollowUser = (id) => {
 export const APIgetStatus = (id) => {
   return instance.get(`/profile/status/${id}`)
 }
-export const APIsetStatus = (text) => {
-  return instance.put(`/profile/status`)
+export const APIupdateStatus = (text) => {
+  return instance.put(`/profile/status`, {
+    status: text
+  })
 }

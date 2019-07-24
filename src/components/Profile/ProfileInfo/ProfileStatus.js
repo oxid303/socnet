@@ -3,25 +3,38 @@ import React from 'react';
 class ProfileStatus extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { editMode: false, status: this.props.status }
+    this.state = {
+      editMode: false,
+      status: this.props.status
+    }
   }
 
-  activateEditMode() {
-    this.setState(() => ({ editMode: true }));
+  activateEditMode = () => {
+    this.setState({ editMode: true });
   }
 
-  deactivateEditMode() {
-    this.props.typingStatus(this.state.status);
-    this.setState(() => ({ editMode: false }));
+  deactivateEditMode = () => {
+    this.setState({ editMode: false });
   }
 
-  typingStatus(text) {
-    this.props.typingStatus(text.target.value);
+  typingStatus = (text) => {
+    this.setState({ status: text.currentTarget.value });
   }
 
-  onKeyPress(target) {
+  onPressEnter = (target) => {
     if (target.charCode === 13) {
-      this.props.setStatus(this.props.status)
+      this.props.updateStatus(this.state.status);
+      this.deactivateEditMode();
+    }
+  }
+
+  handleFocus = (event) => {
+    event.target.select();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.status !== this.props.status) {
+      this.setState({ status: this.props.status });
     }
   }
 
@@ -32,15 +45,16 @@ class ProfileStatus extends React.Component {
           ?
           <div>
             <input
-              onKeyPress={this.onKeyPress.bind(this)}
+              onKeyPress={this.onPressEnter}
               autoFocus
-              onBlur={this.deactivateEditMode.bind(this)}
-              value={this.props.status}
-              onChange={this.typingStatus.bind(this)} />
+              onFocus={this.handleFocus}
+              onBlur={this.deactivateEditMode}
+              value={this.state.status}
+              onChange={this.typingStatus} />
           </div>
           :
           <div>
-            <span onClick={this.activateEditMode.bind(this)}>
+            <span onClick={this.activateEditMode}>
               {this.props.status || 'set a status'}
             </span>
           </div>

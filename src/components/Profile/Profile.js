@@ -23,8 +23,7 @@ const MyPosts = (props) => {
       <ProfileInfo
         userInfo={props.userInfo}
         status={props.status}
-        typingStatus={props.typingStatus}
-        setStatus={props.setStatus} />
+        updateStatus={props.updateStatus} />
       <div>
         <textarea ref={addPostArea} value={props.postTextArea} onChange={typingPost} />
         <br />
