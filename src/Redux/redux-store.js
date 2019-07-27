@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import profileReducer from './profileReducer';
 import dialogsReducer from './dialogsReducer';
 import usersReducer from './usersReducer';
@@ -9,7 +10,8 @@ let reducers = combineReducers({
   profile: profileReducer,
   dialogs: dialogsReducer,
   users: usersReducer,
-  auth: authReducer
+  auth: authReducer,
+  form: formReducer
 });
 
 // let store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

@@ -23,7 +23,7 @@ const App = () => {
         <Route path="/users" render={() => <UsersContainer />} />
         <Route path="/music" render={Music} />
         <Route path="/settings" render={Settings} />
-        <Route path="/login" render={Login} />
+        <Route path="/login" render={() => <Login />} />
       </div>
     </div>
   );
