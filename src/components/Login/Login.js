@@ -28,6 +28,7 @@ const Login = (props) => {
           <Field
             name="password"
             component={Input}
+            type="password"
             placeholder="password"
             validate={[required, maxLength20]} />
         </div>

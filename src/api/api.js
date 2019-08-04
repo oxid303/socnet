@@ -10,29 +10,35 @@ const instance = axios.create({
 
 export const APIgetUsersPage = (currentPage = 1, pageSize = 10) => {
   return instance.get(`/users?page=${currentPage}&count=${pageSize}`)
-    .then(responce => responce.data)
+    .then(responce => responce.data);
 }
 export const APIauthMe = () => {
   return instance.get('/auth/me')
-    .then(responce => responce.data)
+    .then(responce => responce.data);
 }
 export const APIgetUserData = (id) => {
   return instance.get(`/profile/${id}`)
-    .then(responce => responce.data)
+    .then(responce => responce.data);
 }
 export const APIfollowUser = (id) => {
   return instance.post(`/follow/${id}`)
-    .then(responce => responce.data.resultCode)
+    .then(responce => responce.data.resultCode);
 }
 export const APIunfollowUser = (id) => {
   return instance.delete(`/follow/${id}`)
-    .then(responce => responce.data.resultCode)
+    .then(responce => responce.data.resultCode);
 }
 export const APIgetStatus = (id) => {
-  return instance.get(`/profile/status/${id}`)
+  return instance.get(`/profile/status/${id}`);
 }
 export const APIupdateStatus = (text) => {
   return instance.put(`/profile/status`, {
     status: text
-  })
+  });
+}
+export const APIlogin = (email, password, rememberMe = false) => {
+  return instance.post(`/auth/login`, { email, password, rememberMe });
+}
+export const APIlogout = () => {
+  return instance.delete(`/auth/login`);
 }
