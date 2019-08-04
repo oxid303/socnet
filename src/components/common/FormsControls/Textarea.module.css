@@ -1,0 +1,80 @@
+.textareaError{
+  margin: -2px;
+  border: 3px solid #ff5757;
+  border-radius: 5px;
+}
+
+/* .talkBubble {
+  padding: 5px 20px;
+  position: relative;
+  left: 15px;
+  bottom: 10px;
+	background-color: lightyellow;
+  border: 1px solid #666;
+  border-radius: 10px;
+}
+.leftBottom:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: -11px;
+	right: auto;
+  top: auto;
+	bottom: -1px;
+	border: 10px solid;
+	border-color: transparent transparent #666 transparent;
+}
+.leftBottom:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: -9px;
+	right: auto;
+  top: auto;
+	bottom: 0px;
+	border: 10px solid;
+	border-color:transparent transparent lightyellow  transparent;
+} */
+
+
+.inputError{
+  margin: -1px;
+  border: 3px solid #ff5757;
+  border-radius: 5px;
+}
+
+.talkBubble {
+  font-size: 14px;
+  padding: 0 20px;
+  position: relative;
+  left: 15px;
+	background-color: lightyellow;
+  border: 1px solid #666;
+  border-radius: 8px;
+}
+.leftBottom:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: -8px;
+	right: auto;
+  top: auto;
+	bottom: -1px;
+	border: 7px solid;
+	border-color: transparent transparent #666 transparent;
+}
+.leftBottom:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: -6px;
+	right: auto;
+  top: auto;
+	bottom: 0px;
+	border: 7px solid;
+	border-color:transparent transparent lightyellow  transparent;
+}

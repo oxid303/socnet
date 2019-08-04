@@ -1,22 +1,22 @@
 import React from 'react';
 import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
+import ProfileForm from './ProfileForm/ProfileForm';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
 
-  let posts = props.posts.map(item =>
-    <Post key={item.id} message={item.message} likesCount={item.likesCount} />);
+  // let myRef = React.createRef();
 
-  let addPostArea = React.createRef();
+  // let onChange = () => {
+  //   props.myFunction(myRef.current.value);
+  // };
 
-  let typingPost = () => {
-    props.typingPost(addPostArea.current.value);
-  };
+  // <textarea ref={myRef} onChange={onChange} />
 
-  let addPost = () => {
-    props.addPost();
-  };
+  const onSubmitForm = (formData) => {
+    props.addPost(formData.post);
+  }
 
   return (
     <div className={s.container}>
@@ -24,14 +24,14 @@ const MyPosts = (props) => {
         userInfo={props.userInfo}
         status={props.status}
         updateStatus={props.updateStatus} />
-      <div>
-        <textarea ref={addPostArea} value={props.postTextArea} onChange={typingPost} />
-        <br />
-        <button onClick={addPost}>Add post</button>
-      </div>
+        
+      <ProfileForm onSubmit={onSubmitForm} />
 
-      <div className={s.posts}>
-        {posts}
+      <div className={s.posts}>{props.posts.map(item =>
+        <Post
+          key={item.id}
+          message={item.message}
+          likesCount={item.likesCount} />)}
       </div>
     </div>
   )

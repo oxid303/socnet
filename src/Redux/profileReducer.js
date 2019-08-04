@@ -1,13 +1,11 @@
 import { APIgetUserData, APIgetStatus, APIupdateStatus } from '../api/api';
 
-const TYPING_POST = 'PROFILE-TYPING-POST';
 const ADD_POST = 'PROFILE-ADD-POST';
 const SET_USER_INFO = 'PROFILE-SET-USER-INFO';
 const IS_FETCHING = 'PROFILE-IS-FETCHING';
 const SET_STATUS = 'PROFILE-SET-STATUS';
 
-export const typingPost = (message) => ({ type: TYPING_POST, message });
-export const addPost = () => ({ type: ADD_POST });
+export const addPost = (message) => ({ type: ADD_POST, message });
 export const setUserInfo = (userInfo) => ({ type: SET_USER_INFO, userInfo });
 export const toggleIsFetching = (isFetching) => ({ type: IS_FETCHING, isFetching });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
@@ -41,7 +39,6 @@ export const updateStatus = (text) => {
 
 let initialState = {
   posts: [],
-  postTextArea: '',
   userInfo: {
     aboutMe: null,
     contacts: {
@@ -70,24 +67,17 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case TYPING_POST:
-      return {
-        ...state,
-        postTextArea: action.message
-      };
-
     case ADD_POST:
-      if (state.postTextArea === '') return state;
+      if (action.message === '') return state;
 
-      let newPost = {
+      let post = {
         id: state.posts.length + 1,
-        message: state.postTextArea,
+        message: action.message,
         likesCount: 0
       };
       return {
         ...state,
-        posts: [newPost, ...state.posts],
-        postTextArea: ''
+        posts: [post, ...state.posts]
       };
 
     case SET_USER_INFO:
