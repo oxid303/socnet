@@ -28,6 +28,7 @@
 }
 .loginBlock:hover{
   background-color: #6abaf0;
+  cursor: pointer;
 }
 .loginUserName{
   padding: 0 40px;

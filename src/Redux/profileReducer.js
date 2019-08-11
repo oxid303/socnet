@@ -51,8 +51,8 @@ let initialState = {
       website: null,
       youtube: null
     },
-    fullName: 'No such user or directory',
-    lookingForAJob: false,
+    fullName: null,
+    lookingForAJob: null,
     lookingForAJobDescription: null,
     photos: {
       large: null,
