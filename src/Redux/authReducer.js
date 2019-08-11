@@ -1,9 +1,10 @@
 import { APIauthMe, APIlogin, APIlogout } from '../api/api';
+import { stopSubmit } from 'redux-form';
 
 const SET_AUTH_USER_DATA = 'AUTH-SET-AUTH-USER-DATA';
 
 export const setAuthUserData = (isAuth, id, email, login) =>
-  ({ type: SET_AUTH_USER_DATA, payload: { id, email, login, isAuth } });
+  ({ type: SET_AUTH_USER_DATA, payload: { isAuth, id, email, login } });
 
 export const authMe = () => (dispatch) => {
   APIauthMe()
@@ -15,7 +16,13 @@ export const authMe = () => (dispatch) => {
 export const loginMe = (email, password, rememberMe) => (dispatch) => {
   APIlogin(email, password, rememberMe)
     .then(responce => {
-      if (responce.data.resultCode === 0) dispatch(authMe());
+      if (responce.data.resultCode === 0) {
+        dispatch(authMe())
+      } else {
+        let message = responce.data.messages.length > 0 ? responce.data.messages[0] : 'Some error';
+        // dispatch(stopSubmit('login', { email: 'email is wrong', password: 'password is wrong' }));
+        dispatch(stopSubmit('login', { _error: message }));
+      };
     });
 }
 export const logoutMe = () => (dispatch) => {

@@ -1,17 +1,17 @@
 import React from 'react';
 import s from './Login.module.css';
-import { Field, reduxForm, reset } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { required, maxLength, email } from '../../utils/validators';
-import {Input} from '../common/FormsControls/FormControl';
+import { Input } from '../common/FormsControls/FormControl';
 
 const maxLength20 = maxLength(20);
 
-const afterSubmit = (result, dispatch) => {
-  dispatch(reset('login'));
-}
+// const afterSubmit = (result, dispatch) => {
+//   dispatch(reset('login'));
+// }
 
 const Login = (props) => {
-  const { handleSubmit, reset } = props;
+  const { handleSubmit, reset, error } = props;
 
   return (
     <div className={s.container}>
@@ -36,6 +36,7 @@ const Login = (props) => {
           <Field name="rememberMe" component={Input} type="checkbox" />
           <label htmlFor="rememberMe">Remember Me</label>
         </div>
+        {error && <div className={s.formSummaryError}>{error}</div>}
         <div>
           <button type="submit">Submit</button>
           <button onClick={reset}>Reset</button>
@@ -47,5 +48,5 @@ const Login = (props) => {
 
 export default reduxForm({
   form: 'login',
-  onSubmitSuccess: afterSubmit
+  // onSubmitSuccess: afterSubmit
 })(Login);
