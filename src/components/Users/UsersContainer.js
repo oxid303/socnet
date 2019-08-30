@@ -1,5 +1,6 @@
 import React from 'react';
 import * as ActionCreators from '../../Redux/usersReducer';
+import * as Selectors from '../../Redux/usersSelectors';
 import { connect } from 'react-redux';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
@@ -17,6 +18,8 @@ class UsersContainer extends React.Component {
   }
 
   render() {
+    console.log('users render');
+    
     return (
       <>
         {this.props.isFetching ?
@@ -42,13 +45,26 @@ class UsersContainer extends React.Component {
   }
 }
 
-let mapStateToProps = (state) => ({
-  users: state.users.users,
-  pageSize: state.users.pageSize,
-  totalUsersCount: state.users.totalUsersCount,
-  currentPage: state.users.currentPage,
-  isFetching: state.users.isFetching,
-  followingInProgress: state.users.followingInProgress
-})
+// let mapStateToProps = (state) => ({
+//   users: state.users.users,
+//   pageSize: state.users.pageSize,
+//   totalUsersCount: state.users.totalUsersCount,
+//   currentPage: state.users.currentPage,
+//   isFetching: state.users.isFetching,
+//   followingInProgress: state.users.followingInProgress
+// })
+
+let mapStateToProps = (state) => {
+  console.log('users mstp');
+  
+  return {
+    users: Selectors.getUsers(state),
+    pageSize: Selectors.getPageSize(state),
+    totalUsersCount: Selectors.getTotalUsersCount(state),
+    currentPage: Selectors.getCurrentPage(state),
+    isFetching: Selectors.getIsFetching(state),
+    followingInProgress: Selectors.getFollowingInProgress(state)
+  }
+}
 
 export default connect(mapStateToProps, ActionCreators)(UsersContainer);
