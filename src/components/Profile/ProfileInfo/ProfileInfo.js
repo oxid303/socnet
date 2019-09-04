@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
-import ProfileStatus from './ProfileStatus';
+import ProfileStatus from './ProfileStatusWithHooks';
 import defaultUserPhoto from '../../../assets/images/default_user.png';
 
 const ProfileInfo = (props) => {
@@ -15,6 +15,7 @@ const ProfileInfo = (props) => {
       <div className={s.status}>
         <ProfileStatus
           status={props.status}
+          statusIsFetching={props.statusIsFetching}
           updateStatus={props.updateStatus} />
       </div>
     </div>

@@ -14,7 +14,10 @@ class ProfileStatus extends React.Component {
   }
 
   deactivateEditMode = () => {
-    this.setState({ editMode: false });
+    this.setState({
+      editMode: false,
+      status: this.props.status
+    });
   }
 
   typingStatus = (text) => {
