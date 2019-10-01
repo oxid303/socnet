@@ -8,8 +8,14 @@ import { withRouter, Redirect } from 'react-router-dom';
 // import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 class ProfileContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.paramsId = +this.props.match.params.userId;
+    this.isMyProfile = this.paramsId === this.props.authId || !this.paramsId;
+  }
+
   componentDidMount() {
-    const id = this.props.match.params.userId || this.props.authId;
+    const id = this.paramsId || this.props.authId;
     if (id) {
       this.props.getStatus(id);
       this.props.getUser(id);
@@ -17,11 +23,15 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
-    if (!this.props.isAuth && !this.props.match.params.userId) return <Redirect to="/login" />;
+    if (!this.props.isAuth && !this.paramsId) return <Redirect to="/login" />;
 
     return (
       <>
-        {this.props.isFetching ? <Preloader /> : <Profile {...this.props} />}
+        {this.props.isFetching
+          ? <Preloader />
+          : <Profile
+            {...this.props}
+            isMyProfile={this.isMyProfile} />}
       </>
     )
   }

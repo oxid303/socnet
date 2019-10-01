@@ -24,7 +24,8 @@ const MyPosts = (props) => {
         userInfo={props.userInfo}
         status={props.status}
         updateStatus={props.updateStatus}
-        statusIsFetching={props.statusIsFetching} />
+        statusIsFetching={props.statusIsFetching}
+        isMyProfile={props.isMyProfile} />
         
       <ProfileForm onSubmit={onSubmitForm} />
 

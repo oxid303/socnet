@@ -36,26 +36,28 @@ const ProfileStatusWithHooks = (props) => {
 
   return (
     <div>
-      {editMode
-        ?
-        <div>
-          <input
-            autoFocus
-            onFocus={handleFocus}
-            onBlur={deactivateEditMode}
-            value={status}
-            onChange={typingStatus}
-            onKeyPress={onPressEnter}
-          />
-        </div>
-        :
-        <div>
-          <span
-            onClick={props.statusIsFetching ? undefined : activateEditMode}
-            className={props.statusIsFetching ? s.statusIsFetching : undefined}>
-            {props.statusIsFetching ? 'updating...' : props.status || 'set a status'}
-          </span>
-        </div>
+      {!props.isMyProfile
+        ? <span>{props.status}</span>
+        : props.statusIsFetching
+          ? <span className={s.statusIsFetching}>updating...</span>
+          : editMode
+            ?
+            <div>
+              <input
+                autoFocus
+                onFocus={handleFocus}
+                onBlur={deactivateEditMode}
+                value={status}
+                onChange={typingStatus}
+                onKeyPress={onPressEnter}
+              />
+            </div>
+            :
+            <div>
+              <span onClick={activateEditMode}>
+                {props.status || 'set a status'}
+              </span>
+            </div>
       }
     </div>
   )

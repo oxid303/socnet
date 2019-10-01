@@ -30,6 +30,9 @@ export const loginMe = (email, password, rememberMe) => (dispatch) => {
     });
 }
 export const logoutMe = () => (dispatch) => {
+  let isConfirmLogout = window.confirm("Are you sure you want to logout?");
+  if (!isConfirmLogout) return;
+
   dispatch(toggleLogoutInProcess(true));
   APIlogout()
     .then(result => {
